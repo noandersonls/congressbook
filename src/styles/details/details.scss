@@ -48,8 +48,9 @@
 
 .details__loading {
   display: inline-block;
-  width: 100px;
+  width: 150px;
   height: 18px;
+  border-radius: 5px;
   animation-duration: 0.5s;
   animation-name: changewidth;
   animation-iteration-count: infinite;

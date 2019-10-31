@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { getAllCongressMembers } from '../../api'
+
 import AdvancedSearchBar from '../searchbar/advanced_searchbar'
 import Paginator from '../paginator/paginator'
 import Row from './booklist_row'
+import Loader from '../loader/loader'
 
 const CHAMBER = 'senate'
 const CONGRESS = 115
@@ -96,7 +98,8 @@ export default class Booklist extends Component {
       return <Row key={member.id} member={member} />
     });
 
-    if (!loaded) return <div>Cargando</div>
+    if (!loaded) return <Loader/>
+  
 
     return (
           <div className='booklist'>
