@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/congressbook/static/css/main.6d7d62e2.chunk.css",
+    "main.js": "/congressbook/static/js/main.0e5b249a.chunk.js",
+    "main.js.map": "/congressbook/static/js/main.0e5b249a.chunk.js.map",
+    "runtime-main.js": "/congressbook/static/js/runtime-main.9e5be7a1.js",
+    "runtime-main.js.map": "/congressbook/static/js/runtime-main.9e5be7a1.js.map",
+    "static/js/2.d1e256ae.chunk.js": "/congressbook/static/js/2.d1e256ae.chunk.js",
+    "static/js/2.d1e256ae.chunk.js.map": "/congressbook/static/js/2.d1e256ae.chunk.js.map",
+    "index.html": "/congressbook/index.html",
+    "precache-manifest.929b6828fe56dc7442250b6d0b90a5d0.js": "/congressbook/precache-manifest.929b6828fe56dc7442250b6d0b90a5d0.js",
+    "service-worker.js": "/congressbook/service-worker.js",
+    "static/css/main.6d7d62e2.chunk.css.map": "/congressbook/static/css/main.6d7d62e2.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9e5be7a1.js",
+    "static/js/2.d1e256ae.chunk.js",
+    "static/css/main.6d7d62e2.chunk.css",
+    "static/js/main.0e5b249a.chunk.js"
+  ]
+}
