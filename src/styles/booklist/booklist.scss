@@ -1,15 +1,15 @@
 .booklist {
-  
-}
-
-.booklist__table {
   display: flex;
   flex-direction: column;
 }
 
-.booklist__table-element {
+.booklist__body {
+  
+}
+
+.booklist__row {
   display: flex;
- 
+
   div {
     flex: 1;
     padding: 0.2rem 0.4em;
@@ -17,7 +17,7 @@
   }
 }
 
-.booklist__table-header {
+.booklist__header {
   background: white;
-  @extend .booklist__table-element
+  @extend .booklist__row
 }

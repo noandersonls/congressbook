@@ -3,7 +3,7 @@ import React from 'react'
 const SearchBar = ({value, onChange}) => {
   return (
     <div>
-          <input placeholder='Buscar un miembro...' value={value} onChange={(event) => onChange(event)} />
+          <input placeholder='Search here...' value={value} onChange={(event) => onChange(event)} />
     </div>
     )
 }

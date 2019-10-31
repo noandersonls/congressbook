@@ -5,7 +5,7 @@ const Row = ({member}) => {
   return (
     <NavLink
     to={`/${member.id}/details`}
-    className='booklist__table-element'
+    className='booklist__row'
     key={member.id}
   >
     <div>{member.first_name}</div>

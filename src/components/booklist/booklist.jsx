@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { getCongressMembers } from '../../api'
-import SearchBar from '../searchbar/searchbar.jsx'
-import Paginator from '../paginator/paginator.jsx'
-import Row from './booklist_row.jsx'
+import { getAllCongressMembers } from '../../api'
+import AdvancedSearchBar from '../searchbar/advanced_searchbar'
+import Paginator from '../paginator/paginator'
+import Row from './booklist_row'
 
 
 export default class Booklist extends Component {
@@ -15,30 +15,32 @@ export default class Booklist extends Component {
       list: [],
       currentPage: 1,
       membersPerPage: 7,
-      showAdvanceSearch: false
+      showAdvanceSearch: false,
+      searchKey: ''
     }
   }
 
   componentDidMount() {
-    getCongressMembers(115, 'senate')
+    getAllCongressMembers(115, 'senate')
       .then(data => {
-        this.saveData(data)
+        this.setData(data)
       })
   }
 
-  saveData = (data) => {
-    this.setState({ data: data.data.results[0], list: data.data.results[0].members})
+  setData = (data) => {
+    const { results } = data.data
+    this.setState({ data: results[0], list: results[0].members})
   }
 
   onSearch = (event) => {
-    // ADvance searchbar -> flag
-    //Select 
-    let { members } = this.state.data
+    const { searchKey } = this.state
 
+    let { members } = this.state.data
     members = members.filter(member => {
       if (Object.keys(member).find(key => {
-        if(typeof member[key] === 'string') {
-          if (member[key].includes(event.target.value)) {
+        const filter = searchKey || key
+        if(typeof member[filter] === 'string') {
+          if (member[filter].includes(event.target.value)) {
             return true
           }
         }
@@ -51,12 +53,27 @@ export default class Booklist extends Component {
     this.setState({list: members});
   }
 
+  toggleAdvancedSearchbar = () => {
+    const { showAdvanceSearch } = this.state
+    this.setState({
+      showAdvanceSearch: !showAdvanceSearch
+    });
+  }
+
+  setSearchKey = (event) => {
+    const { value } = event.target
+    this.setState({
+      searchKey: value
+    });
+  }
+
 
   handlePagination = event => {
     this.setState({
       currentPage: Number(event.target.id)
     });
   }
+
 
   handleNextPage = () => {
     this.setState({ currentPage: this.state.currentPage + 1 });
@@ -67,54 +84,55 @@ export default class Booklist extends Component {
   }
 
   render () {
-    const { list, currentPage, membersPerPage, showAdvanceSearch} = this.state
-
+    const { list, currentPage, membersPerPage, showAdvanceSearch, data} = this.state
     const indexOfLastMember = currentPage * membersPerPage;
     const indexOfFirstMember = indexOfLastMember - membersPerPage;
     const currentMembers = list.slice(indexOfFirstMember, indexOfLastMember);
+
+    const membersKeys = data.members[0] || []
 
     const renderRows = currentMembers.map((member, index) => {
       return <Row key={member.id} member={member} />
     });
 
-    console.log(this.state)
     return (
-      <div className='booklist'>
-        <div className='booklist__container'>
-          <div className='booklist__table'>
-            <SearchBar onChange={this.onSearch}/>
-            <button onClick={() => console.log('LoL')}>HERE</button>
-            {showAdvanceSearch && <div>Hello, ADVANCESEARCH </div>}
-              <div className="booklist__table-header">
-                <div>First Name</div>
-                <div>Last Name</div>
-                <div>Short Title</div>
-                <div>Title</div>
-                <div>State Rank</div>
-                <div>Phone Number</div>
-              </div>
-              { list.length === 0 
-                ? 
-                <div>COMPONENTE VACIO DE CARGA</div>
-                :
-                <div>
-                  <div className="booklist__table--body">
-                  {renderRows}
-                  </div>
-                  <div>
-                    <Paginator 
-                      handleNextPage={this.handleNextPage} 
-                      handlePreviousPage={this.handlePreviousPage}
-                      onClick={this.handlePagination}
-                      membersPerPage={membersPerPage}
-                      list={list}
-                    />
-                  </div>
+          <div className='booklist'>
+            <AdvancedSearchBar
+              showAdvanceSearch={showAdvanceSearch}
+              membersKeys={membersKeys}
+              setSearchKey={this.setSearchKey}
+              onSearch={this.onSearch}
+              toggleAdvancedSearchbar={this.toggleAdvancedSearchbar}
+            />
+            <div className="booklist__header">
+              <div>First Name</div>
+              <div>Last Name</div>
+              <div>Short Title</div>
+              <div>Title</div>
+              <div>State Rank</div>
+              <div>Phone Number</div>
+            </div>
+            { list.length === 0 
+              ? 
+              <div>COMPONENTE VACIO DE CARGA</div>
+              :
+              <div>
+                <div className="booklist__body">
+                {renderRows}
                 </div>
-              }
+                <div>
+                  <Paginator 
+                    currentPage={currentPage}
+                    handleNextPage={this.handleNextPage} 
+                    handlePreviousPage={this.handlePreviousPage}
+                    onClick={this.handlePagination}
+                    membersPerPage={membersPerPage}
+                    list={list}
+                  />
+                </div>
+              </div>
+            }
           </div>
-        </div>
-      </div>
     )
   }
 }
