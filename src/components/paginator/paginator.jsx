@@ -1,15 +1,18 @@
 import React from 'react'
 
-const Paginator = ({membersPerPage, list, onClick, handleNextPage, handlePreviousPage}) => {
+const Paginator = ({membersPerPage, currentPage, list, onClick, handleNextPage, handlePreviousPage}) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(list.length / membersPerPage); i++) {
     pageNumbers.push(i);
   }
 
+  const isLastPage = currentPage === pageNumbers.length
+  const isFirstPage = currentPage === 1
+
   return (
     <div className='paginator'>
-    <div onClick={() => handlePreviousPage()}>Previous Page</div>
+    <button disabled={isFirstPage} onClick={() => handlePreviousPage()}>Previous Page</button>
       {pageNumbers.map(number => {
         return (
           <div
@@ -21,7 +24,7 @@ const Paginator = ({membersPerPage, list, onClick, handleNextPage, handlePreviou
           </div>
         );
       })}
-      <div onClick={() => handleNextPage()} >Next Page</div>
+      <button disabled={isLastPage} onClick={() => handleNextPage()} >Next Page</button>
     </div>
   )
 }
