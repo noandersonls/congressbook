@@ -8,13 +8,24 @@
   }
 }
 
+.details__button {
+  @extend .paginator__button;
+  margin-bottom: 10px;
+  width: 100px;
+  text-decoration: none;
+  color: #FFF;
+  display: inline-block;
+}
+
 .details__title {
   display: flex;
   justify-content: center;
   font-size: larger;
   font-weight: bold;
+  background: #272c34;
+  color: #FFF;
   padding: 20px;
-  border-bottom: 1px solid darkgray;  
+  border-bottom: 1px solid darkgray;
 }
 
 .details__body {
@@ -30,8 +41,27 @@
   background: beige;
   
   & a {
-    text-decoration: none;
     color: inherit;
     cursor: pointer;
+  }
+}
+
+.details__loading {
+  display: inline-block;
+  width: 100px;
+  height: 18px;
+  animation-duration: 0.5s;
+  animation-name: changewidth;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes changewidth {
+  from {
+    background-color: #ddd;
+  }
+
+  to {
+    background-color: #eee;
   }
 }
