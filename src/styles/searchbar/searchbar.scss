@@ -1,0 +1,27 @@
+.searchbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.searchbar__input {
+  border:1px solid #cccccc;
+  width: 150px;
+  height: 30px;
+  border-radius: 30px;
+  outline: none;
+  text-align: center;
+  font-size: 12px;
+  background: #FFF;
+  color: inherit
+}
+
+.searchbar__select {
+  @extend .searchbar__input;
+}
+
+.searchbar__button {
+  @extend .paginator__button;
+  width: 150px;
+}

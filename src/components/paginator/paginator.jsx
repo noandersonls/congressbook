@@ -12,19 +12,20 @@ const Paginator = ({membersPerPage, currentPage, list, onClick, handleNextPage, 
 
   return (
     <div className='paginator'>
-    <button disabled={isFirstPage} onClick={() => handlePreviousPage()}>Previous Page</button>
+    <button className='paginator__button' disabled={isFirstPage} onClick={() => handlePreviousPage()}>Previous</button>
       {pageNumbers.map(number => {
         return (
           <div
             key={number}
             id={number}
+            className={'paginator__page ' + (number === currentPage ? 'paginator__page--active' : null)}
             onClick={(event) => onClick(event)}
           >
             {number}
           </div>
         );
       })}
-      <button disabled={isLastPage} onClick={() => handleNextPage()} >Next Page</button>
+      <button className='paginator__button' disabled={isLastPage} onClick={() => handleNextPage()} >Next</button>
     </div>
   )
 }

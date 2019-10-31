@@ -4,20 +4,37 @@
 }
 
 .booklist__body {
-  
+  line-height: 1.2;
 }
 
 .booklist__row {
   display: flex;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  background: #FFFF;
+  transition: 0.3s;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    background:#1954F308;
+  }
 
   div {
     flex: 1;
-    padding: 0.2rem 0.4em;
-    border: 1px solid rgb(238, 238, 238);
+    padding: 0.5rem 0.5em;
   }
 }
 
 .booklist__header {
-  background: white;
-  @extend .booklist__row
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background: #1A295459;
+  color: #FFFF;
+  padding: 10px;
+  display: flex;
+
+  div {
+    flex: 1;
+    padding: 0.5rem 0.5em;
+  }
 }

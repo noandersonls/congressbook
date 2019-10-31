@@ -2,4 +2,40 @@
   display: flex;
   margin-top: 20px;
   justify-content: space-evenly;
+  align-items: center;
+}
+
+.paginator__page {
+  cursor: pointer;
+}
+
+.paginator__page--active {
+  color: #20232A;
+  font-weight: bold;
+  cursor:  pointer;
+}
+
+.paginator__button {
+  opacity: 0.6;
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  transition: 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  font-size: 14px;
+  opacity: 0.6;
+  background-color: #1f222a;
+  padding: 8px 18px;
+  color:#FFF;
+
+  &:hover:not([disabled]){
+    opacity: 1;
+  }
+
+  &:disabled {
+    background: rgb(192, 192, 192);
+    cursor: default;
+  }
 }
