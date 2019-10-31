@@ -1,0 +1,23 @@
+.booklist {
+  
+}
+
+.booklist__table {
+  display: flex;
+  flex-direction: column;
+}
+
+.booklist__table-element {
+  display: flex;
+ 
+  div {
+    flex: 1;
+    padding: 0.2rem 0.4em;
+    border: 1px solid rgb(238, 238, 238);
+  }
+}
+
+.booklist__table-header {
+  background: white;
+  @extend .booklist__table-element
+}
